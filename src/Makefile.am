@@ -1,4 +1,4 @@
-DIST_SUBDIRS = secp256k1
+#DIST_SUBDIRS = secp256k1
 AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS)
 
 
@@ -371,68 +371,68 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-bifrostd_LDADD = \
-  $(LIBBITCOIN_SERVER) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UNIVALUE) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBLEVELDB) \
-  $(LIBMEMENV) \
-  $(LIBSECP256K1)
+#bifrostd_LDADD = \
+#  $(LIBBITCOIN_SERVER) \
+#  $(LIBBITCOIN_COMMON) \
+#  $(LIBBITCOIN_UNIVALUE) \
+#  $(LIBBITCOIN_UTIL) \
+#  $(LIBBITCOIN_CRYPTO) \
+#  $(LIBLEVELDB) \
+#  $(LIBMEMENV) \
+#  $(LIBSECP256K1)
 
-if ENABLE_ZMQ
-bifrostd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
-endif
+#if ENABLE_ZMQ
+#bifrostd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+#endif
 
-if ENABLE_WALLET
-bifrostd_LDADD += libbitcoin_wallet.a
-endif
-bifrostd_SOURCES = bifrostd.cpp
+#if ENABLE_WALLET
+#bifrostd_LDADD += libbitcoin_wallet.a
+#endif
+#bifrostd_SOURCES = bifrostd.cpp
 #
 
-if TARGET_WINDOWS
-bifrostd_SOURCES += bifrostd-res.rc
-endif
+#if TARGET_WINDOWS
+#bifrostd_SOURCES += bifrostd-res.rc
+#endif
 
-bifrostd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-bifrostd_CPPFLAGS = $(BITCOIN_INCLUDES)
-bifrostd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+#bifrostd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+#bifrostd_CPPFLAGS = $(BITCOIN_INCLUDES)
+#bifrostd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
 # bifrost-cli binary #
-bifrost_cli_LDADD = \
-  $(LIBBITCOIN_CLI) \
-  $(LIBBITCOIN_UTIL) \
-  $(BOOST_LIBS) \
-  $(SSL_LIBS) \
-  $(CRYPTO_LIBS)
+#bifrost_cli_LDADD = \
+#  $(LIBBITCOIN_CLI) \
+#  $(LIBBITCOIN_UTIL) \
+#  $(BOOST_LIBS) \
+#  $(SSL_LIBS) \
+#  $(CRYPTO_LIBS)
 
-bifrost_cli_SOURCES = \
-  bifrost-cli.cpp
+#bifrost_cli_SOURCES = \
+#  bifrost-cli.cpp
 
-bifrost_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
+#bifrost_cli_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
 
 # bifrost-tx binary #
-bifrost_tx_LDADD = \
-  $(LIBBITCOIN_UNIVALUE) \
-  $(LIBBITCOIN_COMMON) \
-  $(LIBBITCOIN_UTIL) \
-  $(LIBBITCOIN_CRYPTO) \
-  $(LIBSECP256K1) \
-  $(BOOST_LIBS) \
-  $(CRYPTO_LIBS)
+#bifrost_tx_LDADD = \
+#  $(LIBBITCOIN_UNIVALUE) \
+#  $(LIBBITCOIN_COMMON) \
+#  $(LIBBITCOIN_UTIL) \
+#  $(LIBBITCOIN_CRYPTO) \
+#  $(LIBSECP256K1) \
+#  $(BOOST_LIBS) \
+#  $(CRYPTO_LIBS)
 
-bifrost_tx_SOURCES = bifrost-tx.cpp
-bifrost_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+#bifrost_tx_SOURCES = bifrost-tx.cpp
+#bifrost_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-bifrost_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+#bifrost_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
-if TARGET_WINDOWS
-bifrost_cli_SOURCES += bifrost-cli-res.rc
-endif
-bifrost_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+#if TARGET_WINDOWS
+#bifrost_cli_SOURCES += bifrost-cli-res.rc
+#endif
+#bifrost_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h
@@ -463,9 +463,9 @@ endif
 libbitcoinconsensus_la_LDFLAGS = -no-undefined $(RELDFLAGS)
 libbitcoinconsensus_la_LIBADD = $(CRYPTO_LIBS) $(BOOST_LIBS)
 libbitcoinconsensus_la_CPPFLAGS = $(CRYPTO_CFLAGS) -I$(builddir)/obj -DBUILD_BITCOIN_INTERNAL
-if USE_LIBSECP256K1
-libbitcoinconsensus_la_LIBADD += secp256k1/libsecp256k1.la
-endif
+#if USE_LIBSECP256K1
+#libbitcoinconsensus_la_LIBADD += secp256k1/libsecp256k1.la
+#endif
 endif
 
 CLEANFILES = leveldb/libleveldb.a leveldb/libmemenv.a
@@ -483,7 +483,7 @@ EXTRA_DIST = leveldb
 
 clean-local:
 	-$(MAKE) -C leveldb clean
-	-$(MAKE) -C secp256k1 clean
+	#-$(MAKE) -C secp256k1 clean
 	rm -f leveldb/*/*.gcno leveldb/helpers/memenv/*.gcno
 	-rm -f config.h
 
